@@ -1,0 +1,7 @@
+.image{
+    background-image: url("src/assets/photos/default.jpg") ;
+    background-size: cover;
+    min-width: 100vh;
+    min-height: 97vh;
+
+}

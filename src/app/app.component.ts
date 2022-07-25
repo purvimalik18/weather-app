@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WeatherDataService } from './services/weather-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +9,10 @@ import { WeatherDataService } from './services/weather-data.service';
 export class AppComponent {
   title = 'weather-app';
 
-  weatherData  = null;
 
-  constructor(private api: WeatherDataService) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    
+    this.router.navigate([''])
 }
 }

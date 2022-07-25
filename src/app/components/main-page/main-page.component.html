@@ -1,13 +1,25 @@
-<div class="image">
-    <div class="same">
-        <i class="pi pi-sun"></i>
-        <h2>Know the Weather</h2>
-    </div>
-    <p-dropdown [options]="city" [(ngModel)]="selectedCity" optionLabel="name"
-        placeholder="Choose a Location" [filter]=true (onChange)="addWeatherData(selectedCity)"
-        [style]="{'min-width': '80%','height': '50%','padding': '10px','box-shadow': '0px 0px 8px rgba(0,0,0,0.25)',
-        'background-color':' rgba(255, 255,255, 0.5)',
-        'border-radius': '0px 16px 0px 16px',
-        'transition':' 0.4s', 'left': '100px'}" >
-    </p-dropdown>
+<div class="same">
+    <i class="pi pi-sun"></i>
+    <h2>Know the Weather</h2>
 </div>
+
+<p-dropdown [options]="city" [(ngModel)]="selectedCity" [editable]="true"
+    placeholder="Choose/Type a Location" [filter]=true 
+    (keyup.enter)="addWeatherData(selectedCity)"
+    [style]="{'min-width': '80%','height': '50%','padding': '10px',
+    'box-shadow': '0px 0px 8px rgba(0,0,0,0.25)',
+    'background-color':' rgba(255, 255,255, 0.5)',
+    'border-radius': '0px 16px 0px 16px',
+    'transition':' 0.4s', 'left': '100px'}" >
+</p-dropdown>
+
+<!-- <button class="weather-wrap" *ngIf ="weather != null " (click)="onSubmit()">
+    <div class="location-box">
+    <div class="location">{{weather.name}},{{ weather.sys.country }}</div>
+    </div>
+
+    <div class="weather-box">
+    <div class="temp">{{weather.main.temp}}°C</div>
+    <div class="weather"><img [src]="iconSrc" class="icon-class"/> {{weather.weather[0].main}}</div>
+    </div>
+</button> -->

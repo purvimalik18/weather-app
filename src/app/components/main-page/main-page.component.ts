@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { WeatherDataService } from 'src/app/services/weather-data.service';
-import { loadWeatherSuccess } from 'src/app/store/weather.actions';
-import { weather } from 'src/app/store/weather.interface';
+import { Weather } from 'src/app/models/weather.interface';
+import { HeaderComponent } from '../header/header.component';
+import * as fromStore from "../../store";
+import { Observable } from 'rxjs';
 
-interface City {
-  name: string,
-  code: string
-}
 
 @Component({
   selector: 'app-main-page',
@@ -16,30 +15,29 @@ interface City {
 })
 export class MainPageComponent implements OnInit {
 
-  cities: City[] = [];
-  weather!: weather;
-  selectedCity!: City;
-  city =[];
-
-  constructor(private store: Store,
-      private api: WeatherDataService) { 
+  weatherInfo$!: Observable<Weather>;
+  city=[];
+  selectedCity ="";
   
-    this.api.loadCity().subscribe(data => {
-      this.cities = data;
-    });
-  }
+  constructor(private store: Store,
+      private api: WeatherDataService,
+      private router: Router,
+      private component: HeaderComponent) {  }
 
   ngOnInit(): void {
   }
 
   addWeatherData(event: any){
-    this.api.getWeatherForCity(event.name).subscribe((data)=>{
-      this.weather =data;
-  });
+    this.store.dispatch(new fromStore.LoadWeather(event));
+    this.weatherInfo$ = this.store.select(fromStore.getWeatherDataState);
+    console.log(this.weatherInfo$);
+  }
 
-  this.store.dispatch(loadWeatherSuccess({
-    post: this.weather
-  }));
+  onSubmit() {
+    const val = this.weatherInfo$;
+    if (val) {
+      this.router.navigate(['/header']); 
+    }
   }
 
 }

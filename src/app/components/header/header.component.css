@@ -1,0 +1,39 @@
+.pi, h2{
+    font-size: 1.5rem;
+    color: rgb(239, 106, 11);
+}
+
+.same{
+    display: flex;
+    margin: 10px;
+}
+
+.background{
+    background-color: white;
+}
+
+.weather-data{
+    padding-left: 20%;
+    font-size: 20px;
+    font-family: 'Lucida Sans', sans-serif;
+    display: flex;
+}
+
+.location-data{
+    padding: 5px;
+    padding-top: 12px;
+    font-style: italic;
+    color: rgba(23, 151, 163, 0.826);
+}
+
+.temp-data{
+    padding: 5px;
+    padding-top: 12px;
+    font-weight:bold ;
+    color: rgba(18, 103, 110, 0.826);
+}
+
+.icon-class{
+    padding-bottom: 5px;
+    font-size: 0.5rem;
+}
