@@ -5,7 +5,6 @@ import { WeatherState } from "../reducers/weather.reducers";
 export const getWeatherDataState= createSelector(
    
     fromFeature.getWeatherState,
-    (state: fromFeature.WeatherDataState) => state.weather
-    
+    (state: any) => state
 );
 

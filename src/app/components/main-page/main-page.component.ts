@@ -15,9 +15,11 @@ import { Observable } from 'rxjs';
 })
 export class MainPageComponent implements OnInit {
 
-  weatherInfo$!: Observable<fromStore.WeatherState>
+  weatherInfo$!: Observable<Weather>;
   city=[];
   selectedCity ="";
+  isSelectOpen!: boolean;
+  weather!: Weather;
   
   constructor(private store: Store,
       private api: WeatherDataService,
@@ -31,7 +33,13 @@ export class MainPageComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadWeatherMain(event));
     this.weatherInfo$ = this.store.select(fromStore.getWeatherDataState);
     console.log(this.weatherInfo$);
-
+    this.weatherInfo$.subscribe(weather => (this.weather = weather));
+    console.log(this.weather);
+    // this.store.dispatch(new fromStore.LoadKey(position.city));
+    // this.store.dispatch(new fromStore.LoadWeather(position));
+    // this.store.dispatch(new fromStore.LoadForecast(position));
+    // this.position$ = this.store.select(fromStore.getCondition);
+    // this.position$.subscribe(position => (this.position = position));
   }
 
   onSubmit() {

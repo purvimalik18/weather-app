@@ -4,7 +4,7 @@ import * as fromWeather from "./weather.reducers";
 
 
 export interface WeatherDataState {
-  weather:fromWeather.WeatherState
+  weather: fromWeather.WeatherState
 }
 
 export const weathersReducers: ActionReducerMap<WeatherDataState, any> = {
