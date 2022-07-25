@@ -23,7 +23,8 @@
       "dom"
     ],
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "strictFunctionTypes": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

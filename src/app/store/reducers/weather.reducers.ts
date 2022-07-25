@@ -58,47 +58,45 @@ export interface WeatherState extends EntityState<Weather>{
 };
 
 export const defaultCondition: WeatherState =  {
-        ids: [],
-        entities: {},
-        coord: {lon:80.9167,lat:26.85},
-        weather:[{
-            id:721,
-            main:"Haze",
-            description:"haze",
-            icon:"50d"
-        }],
-        base:"stations",
-        main:{
-            temp:33.99,
-            feels_like:40.99,
-            temp_min:33.99,
-            temp_max:33.99,
-            pressure:999,
-            humidity:79
-        },
-        visibility:5000,
-        wind:{
-            speed:5.14,
-            deg:110
-        },
-        clouds:{
-            all:75
-        },
-        dt:1658572270,
-        sys:{
-            type:1,
-            id:9176,
-            country:"IN",
-            sunrise:1658534149,
-            sunset:1658582967
-        },
-        timezone:19800,
-        id:1264733,
-        name:"Lucknow",
-        cod:200,
-        error: ""
-
-
+  coord: { lon: 80.9167, lat: 26.85 },
+  weather: [{
+    id: 721,
+    main: "Haze",
+    description: "haze",
+    icon: "50d"
+  }],
+  base: "stations",
+  main: {
+    temp: 33.99,
+    feels_like: 40.99,
+    temp_min: 33.99,
+    temp_max: 33.99,
+    pressure: 999,
+    humidity: 79
+  },
+  visibility: 5000,
+  wind: {
+    speed: 5.14,
+    deg: 110
+  },
+  clouds: {
+    all: 75
+  },
+  dt: 1658572270,
+  sys: {
+    type: 1,
+    id: 9176,
+    country: "IN",
+    sunrise: 1658534149,
+    sunset: 1658582967
+  },
+  timezone: 19800,
+  id: 1264733,
+  name: "Lucknow",
+  cod: 200,
+  error: '',
+  ids: [],
+  entities:{}
 }
 
 export const weatherAdapter:  EntityAdapter<Weather> = createEntityAdapter<Weather>();
@@ -107,11 +105,11 @@ export const initialState = weatherAdapter.getInitialState(defaultCondition);
 export function weatherReducer(state = initialState, action: fromActions.WeatherActions): WeatherState {
   switch (action.type) {
 
-    case fromActions.WeatherActionTypes.LOAD_WEATHER_SUCCESS:
+    case fromActions.WeatherActionTypes.LOAD_WEATHER_MAIN_SUCCESS:
       return weatherAdapter.addOne(action.payload, { ...state, loading: false, loaded: true });
     
-    case fromActions.WeatherActionTypes.LOAD_WEATHER_FAIL:
-      return { ...state, entities: {}, error: action.payload };
+    case fromActions.WeatherActionTypes.LOAD_WEATHER_MAIN_FAIL:
+      return { ...state, entities: {},error: action.payload };
 
 
     default:

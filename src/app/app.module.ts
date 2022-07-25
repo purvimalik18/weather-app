@@ -13,7 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { TodayTabPageComponent } from './components/today-tab-page/today-tab-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ComponentStore } from '@ngrx/component-store';
-import { weatherReducer } from './store/reducers/weather.reducers';
+import { weathersReducers } from './store/reducers';
 
 
 
@@ -27,7 +27,7 @@ import { weatherReducer } from './store/reducers/weather.reducers';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(weatherReducer),
+    StoreModule.forRoot(weathersReducers),
     DropdownModule,
     FormsModule,
     BrowserAnimationsModule,

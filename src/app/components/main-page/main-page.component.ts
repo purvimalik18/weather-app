@@ -15,7 +15,7 @@ import { Observable } from 'rxjs';
 })
 export class MainPageComponent implements OnInit {
 
-  weatherInfo$!: Observable<Weather>;
+  weatherInfo$!: Observable<fromStore.WeatherState>
   city=[];
   selectedCity ="";
   
@@ -28,9 +28,10 @@ export class MainPageComponent implements OnInit {
   }
 
   addWeatherData(event: any){
-    this.store.dispatch(new fromStore.LoadWeather(event));
+    this.store.dispatch(new fromStore.LoadWeatherMain(event));
     this.weatherInfo$ = this.store.select(fromStore.getWeatherDataState);
     console.log(this.weatherInfo$);
+
   }
 
   onSubmit() {

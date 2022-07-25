@@ -11,15 +11,16 @@ export class WeatherEffects{
 
     constructor(private actions$: Actions, private api: WeatherDataService){}
 
-    @Effect()
-    loadWeather$: Observable<Action> = this.actions$.pipe(
-      ofType<fromActions.LoadWeather>(fromActions.WeatherActionTypes.LOAD_WEATHER),
-      map((action: fromActions.LoadWeather) => action.payload),
-      mergeMap((weather: Weather) =>
-        this.api.getWeatherForCity(weather.name).pipe(
-          map((position: Weather) => new fromActions.LoadWeatherSuccess(weather)),
-          catchError(err => of(new fromActions.LoadWeatherFail(err)))
+    loadWeather$ = createEffect(() => {
+      return this.actions$.pipe(
+        ofType<fromActions.LoadWeatherMain>(fromActions.WeatherActionTypes.LOAD_WEATHER_MAIN),
+        map((action: fromActions.LoadWeatherMain) =>
+          this.api.getWeatherForCity(action.payload).pipe(
+            map((weather: Weather) => new fromActions.LoadWeatherMainSuccess(weather)),
+            catchError(err => of(new fromActions.LoadWeatherMainFail(err)))
+          )
         )
-      )
-    );
+      );
+    }, { dispatch: false }    
+    )
 }

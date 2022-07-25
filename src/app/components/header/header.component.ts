@@ -5,6 +5,7 @@ import { __asyncValues } from 'tslib';
 import { WeatherDataService } from 'src/app/services/weather-data.service';
 import { WeatherState } from 'src/app/store';
 import * as fromStore from "../../store/selectors/weather.selectors";
+import { WeatherDataState } from 'src/app/store/reducers';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +22,7 @@ export class HeaderComponent implements OnInit {
     private store: Store<WeatherState> ) { }
 
   ngOnInit(): void { 
-    this.store.select(fromStore.getWeather).subscribe(data => (this.weatherData = data));
+    this.store.select(fromStore.getWeatherDataState).subscribe(data => (this.weatherData = data));
     console.log(this.weatherData);
   }
 }
