@@ -14,6 +14,7 @@ import { TodayTabPageComponent } from './components/today-tab-page/today-tab-pag
 import { HeaderComponent } from './components/header/header.component';
 import { ComponentStore } from '@ngrx/component-store';
 import { weathersReducers } from './store/reducers';
+import { WeatherEffects } from './store';
 
 
 
@@ -32,7 +33,7 @@ import { weathersReducers } from './store/reducers';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([WeatherEffects])
   ],
   providers: [Store, HeaderComponent, ComponentStore],
   bootstrap: [AppComponent]

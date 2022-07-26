@@ -1,3 +1,4 @@
+import { Update } from '@ngrx/entity';
 import { Action, createAction, props } from '@ngrx/store';
 import { Weather } from '../../models/weather.interface';
 

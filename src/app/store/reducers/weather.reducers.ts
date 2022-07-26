@@ -106,6 +106,7 @@ export function weatherReducer(state = initialState, action: fromActions.Weather
   switch (action.type) {
 
     case fromActions.WeatherActionTypes.LOAD_WEATHER_MAIN_SUCCESS:
+      console.log(fromActions.WeatherActionTypes.LOAD_WEATHER_MAIN_SUCCESS);
       return weatherAdapter.addOne(action.payload, { ...state, loading: false, loaded: true });
     
     case fromActions.WeatherActionTypes.LOAD_WEATHER_MAIN_FAIL:

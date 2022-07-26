@@ -9,18 +9,23 @@ import * as fromActions from "../actions/weather.actions";
 @Injectable()
 export class WeatherEffects{
 
-    constructor(private actions$: Actions, private api: WeatherDataService){}
+    constructor(private actions$: Actions, private api: WeatherDataService){
+      console.log("called");
+    }
 
-    loadWeather$ = createEffect(() => {
+    getWeatherForCity$ = createEffect(() => {
       return this.actions$.pipe(
         ofType<fromActions.LoadWeatherMain>(fromActions.WeatherActionTypes.LOAD_WEATHER_MAIN),
-        map((action: fromActions.LoadWeatherMain) =>
-          this.api.getWeatherForCity(action.payload).pipe(
-            map((weather: Weather) => new fromActions.LoadWeatherMainSuccess(weather)),
-            catchError(err => of(new fromActions.LoadWeatherMainFail(err)))
-          )
+          mergeMap((action) => {
+          return this.api.getWeatherForCity(action.payload).pipe(
+            map((weather) => {
+              return new fromActions.LoadWeatherMainSuccess(weather);
+            }
+            )
+          )}
         )
-      );
-    }, { dispatch: false }    
+      )
+      }, { dispatch: false }    
     )
+
 }
