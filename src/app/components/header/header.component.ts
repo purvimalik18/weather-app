@@ -3,9 +3,8 @@ import { select, Store } from '@ngrx/store';
 import { Weather } from 'src/app/models/weather.interface';
 import { __asyncValues } from 'tslib';
 import { WeatherDataService } from 'src/app/services/weather-data.service';
-import { WeatherState } from 'src/app/store';
 import * as fromStore from "../../store/selectors/weather.selectors";
-import { WeatherDataState } from 'src/app/store/reducers';
+import { WeatherDataState } from 'src/app/store/reducers/weather.reducers';
 
 @Component({
   selector: 'app-header',
@@ -19,10 +18,10 @@ export class HeaderComponent implements OnInit {
   weatherData!: { };
 
   constructor(private api: WeatherDataService,
-    private store: Store<WeatherState> ) { }
+    private store: Store<WeatherDataState> ) { }
 
   ngOnInit(): void { 
-    this.store.select(fromStore.getWeatherDataState).subscribe(data => (this.weatherData = data));
-    console.log(this.weatherData);
+    //this.store.select(fromStore.getWeatherDataState).subscribe(data => (this.weatherData = data));
+    //console.log(this.weatherData);
   }
 }

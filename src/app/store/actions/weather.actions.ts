@@ -3,26 +3,25 @@ import { Action, createAction, props } from '@ngrx/store';
 import { Weather } from '../../models/weather.interface';
 
 export enum WeatherActionTypes {
-  LOAD_WEATHER_MAIN = "[Weather] Load Weather",
-  LOAD_WEATHER_MAIN_SUCCESS = "[Locations] Load Keys Success",
-  LOAD_WEATHER_MAIN_FAIL = "[Locations] Load Keys Fail",
+  LOAD_WEATHER_MAIN_SUCCESS = "[Weather] Load weather Success",
 }
 
-export class LoadWeatherMain implements Action {
-  readonly type = WeatherActionTypes.LOAD_WEATHER_MAIN;
-  constructor(public payload: string) {}
-}
+// export class WeatherAction implements Action {
+//   type!: string;
+//   payload!: {
+//     weatherData: Weather
+//   };
+// }
+
 export class LoadWeatherMainSuccess implements Action {
   readonly type = WeatherActionTypes.LOAD_WEATHER_MAIN_SUCCESS;
-  constructor(public payload: Weather) {}
+  constructor(public payload: Weather) {
+    console.log(payload);
+  }
 }
 
-export class LoadWeatherMainFail implements Action {
-  readonly type = WeatherActionTypes.LOAD_WEATHER_MAIN_FAIL;
-  constructor(public payload: string) {}
-}
+export type WeatherActions = LoadWeatherMainSuccess;
 
-export type WeatherActions =
-  | LoadWeatherMain
-  | LoadWeatherMainSuccess
-  | LoadWeatherMainFail
+
+
+  

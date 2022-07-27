@@ -6,6 +6,7 @@ import { Weather } from 'src/app/models/weather.interface';
 import { HeaderComponent } from '../header/header.component';
 import * as fromStore from "../../store";
 import { Observable } from 'rxjs';
+import { WeatherDataState } from '../../store';
 
 
 @Component({
@@ -15,11 +16,12 @@ import { Observable } from 'rxjs';
 })
 export class MainPageComponent implements OnInit {
 
-  weatherInfo$!: Observable<Weather>;
+  //weatherInfo$!: Observable<WeatherDataState>;
   city=[];
   selectedCity ="";
   isSelectOpen!: boolean;
   weather!: Weather;
+  weatherInfo$!: Observable<fromStore.WeatherDataState>;
   
   constructor(private store: Store,
       private api: WeatherDataService,
@@ -30,16 +32,12 @@ export class MainPageComponent implements OnInit {
   }
 
   addWeatherData(event: any){
-    this.store.dispatch(new fromStore.LoadWeatherMain(event));
-    this.weatherInfo$ = this.store.select(fromStore.getWeatherDataState);
+    this.store.dispatch(new fromStore.LoadWeatherMainSuccess(event));
+    this.weatherInfo$ = this.store.select(fromStore.selectWeather);
     console.log(this.weatherInfo$);
-    this.weatherInfo$.subscribe(weather => (this.weather = weather));
-    console.log(this.weather);
-    // this.store.dispatch(new fromStore.LoadKey(position.city));
-    // this.store.dispatch(new fromStore.LoadWeather(position));
-    // this.store.dispatch(new fromStore.LoadForecast(position));
-    // this.position$ = this.store.select(fromStore.getCondition);
-    // this.position$.subscribe(position => (this.position = position));
+    this.weatherInfo$.subscribe(weather => console.log(weather))
+    //(this.weather = weather));
+    
   }
 
   onSubmit() {
