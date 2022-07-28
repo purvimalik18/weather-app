@@ -28,7 +28,7 @@ import { WeatherEffects } from './store';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({weather: weatherReducer}),
+    StoreModule.forRoot(weathersReducers),
     DropdownModule,
     FormsModule,
     BrowserAnimationsModule,

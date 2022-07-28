@@ -16,12 +16,11 @@ import { WeatherDataState } from '../../store';
 })
 export class MainPageComponent implements OnInit {
 
-  //weatherInfo$!: Observable<WeatherDataState>;
+  weatherInfo$!: Observable<Weather>;
   city=[];
   selectedCity ="";
   isSelectOpen!: boolean;
   weather!: Weather;
-  weatherInfo$!: Observable<fromStore.WeatherDataState>;
   
   constructor(private store: Store,
       private api: WeatherDataService,
@@ -32,12 +31,10 @@ export class MainPageComponent implements OnInit {
   }
 
   addWeatherData(event: any){
-    this.store.dispatch(new fromStore.LoadWeatherMainSuccess(event));
+    this.store.dispatch(new fromStore.LoadWeatherMain(event));
     this.weatherInfo$ = this.store.select(fromStore.selectWeather);
-    console.log(this.weatherInfo$);
-    this.weatherInfo$.subscribe(weather => console.log(weather))
-    //(this.weather = weather));
-    
+    //console.log(this.weatherInfo$);
+    this.weatherInfo$.subscribe(weather => (this.weather = weather));
   }
 
   onSubmit() {

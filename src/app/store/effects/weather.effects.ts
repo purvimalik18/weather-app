@@ -14,16 +14,18 @@ export class WeatherEffects{
       private api: WeatherDataService,
       private store: Store<AppState>){
     }
+    
 
     getWeatherForCity$ = createEffect(() => {
       
       return this.actions$.pipe(
-        ofType<fromActions.LoadWeatherMainSuccess>(fromActions.WeatherActionTypes.LOAD_WEATHER_MAIN_SUCCESS),
+        ofType<fromActions.LoadWeatherMain>(fromActions.WeatherActionTypes.LoadWeatherMain),
           mergeMap((action) => {
+            console.log(action)
           return this.api.getWeatherForCity(action.payload.toString()).pipe(
             map(weather => {
               console.log(weather)
-              return (new fromActions.LoadWeatherMainSuccess(weather))
+              return (new fromActions.LoadWeatherMainSuccess({weatherData: weather}))
             })
           )}
         )
