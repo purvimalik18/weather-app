@@ -30,7 +30,7 @@ export class WeatherEffects{
           )}
         )
       )
-      }, { dispatch: false }    
+      }
     )
 
    
