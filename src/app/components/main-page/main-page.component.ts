@@ -6,7 +6,6 @@ import { Weather } from 'src/app/models/weather.interface';
 import { HeaderComponent } from '../header/header.component';
 import * as fromStore from "../../store";
 import { Observable } from 'rxjs';
-import { WeatherDataState } from '../../store';
 
 
 @Component({
@@ -21,11 +20,11 @@ export class MainPageComponent implements OnInit {
   selectedCity ="";
   isSelectOpen!: boolean;
   weather!: Weather;
+  iconPath!: string;
   
   constructor(private store: Store,
-      private api: WeatherDataService,
-      private router: Router,
-      private component: HeaderComponent) {  }
+      private router: Router, 
+      private api: WeatherDataService) {  }
 
   ngOnInit(): void {
   }
@@ -33,8 +32,13 @@ export class MainPageComponent implements OnInit {
   addWeatherData(event: any){
     this.store.dispatch(new fromStore.LoadWeatherMain(event));
     this.weatherInfo$ = this.store.select(fromStore.selectWeather);
-    //console.log(this.weatherInfo$);
-    this.weatherInfo$.subscribe(weather => (this.weather = weather));
+    this.weatherInfo$.subscribe(weather =>{
+      this.api.setWeather(weather);
+      this.weather = weather
+    } );
+    this.iconPath = "http://openweathermap.org/img/w/" + this.weather.weather[0].icon + ".png";
+    
+    
   }
 
   onSubmit() {

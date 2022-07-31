@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Store, StoreModule } from '@ngrx/store';
 
@@ -13,9 +13,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { TodayTabPageComponent } from './components/today-tab-page/today-tab-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ComponentStore } from '@ngrx/component-store';
-import { weatherReducer, weathersReducers } from './store/reducers/weather.reducers';
+import { weathersReducers } from './store/reducers/weather.reducers';
 import { WeatherEffects } from './store';
-
+import { ButtonModule } from "primeng/button";
+import { TabViewModule } from "primeng/tabview";
+import { CardModule } from 'primeng/card';
+import { DividerModule } from "primeng/divider";
 
 
 @NgModule({
@@ -33,9 +36,15 @@ import { WeatherEffects } from './store';
     FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    EffectsModule.forRoot([WeatherEffects])
+    EffectsModule.forRoot([WeatherEffects]),
+    ButtonModule,
+    TabViewModule,
+    CardModule,
+    DividerModule
+    
   ],
   providers: [Store, HeaderComponent, ComponentStore],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class AppModule { }

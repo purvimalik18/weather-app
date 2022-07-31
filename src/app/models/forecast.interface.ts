@@ -1,0 +1,59 @@
+export interface Forecast {
+    cod: string,
+    message:number,
+    cnt:number,
+    list:[
+        {
+            dt:number,
+            main:{
+                temp:number,
+                feels_like:number,
+                temp_min:number,
+                temp_max:number,
+                pressure:1002,
+                sea_level:1002,
+                grnd_level:975,
+                humidity:66,
+                temp_kf:-2.49
+            },
+            weather:[
+                {
+                    id:500,
+                    main:"Rain",
+                    description:"light rain",
+                    icon:string
+                }
+            ],
+            clouds:{
+                all:57
+            },
+            wind:{
+                speed:3.88,
+                deg:314,
+                gust:5.09
+            },
+            visibility:10000,
+            pop:0.79,
+            rain:{
+                "3h":1.48
+            },
+            sys:{
+                pod:"d"
+            },
+            dt_txt:"2022-07-31 09:00:00"
+        }
+      ],
+      city:{
+        id:1273294,
+        name:"Delhi",
+        coord:{
+            lat:28.6667,
+            lon:77.2167
+        },
+        country:"IN",
+        population:10927986,
+        timezone:19800,
+        sunrise:1659226299,
+        sunset:1659274995
+    }
+}
