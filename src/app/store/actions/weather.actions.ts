@@ -19,7 +19,6 @@ export class LoadWeatherMain implements Action {
 export class LoadWeatherMainSuccess implements Action {
   readonly type = WeatherActionTypes.LoadWeatherMainSuccess;
   constructor(public payload: {weatherData: Weather}) {
-    console.log(payload);
   }
 }
 

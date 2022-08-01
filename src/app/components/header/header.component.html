@@ -60,6 +60,12 @@
 </p-card>
 </div>
 
-<div *ngIf="index == 1">
-    
+<div *ngIf="index == 1" class="same">
+    <div *ngFor="let data of forecastData.list">
+            <p-card>
+                {{dayName }}
+                {{data.dt | date: 'dd-MM-yyyy' }}
+            </p-card>
+        
+    </div>
 </div>

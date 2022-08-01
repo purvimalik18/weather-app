@@ -50,20 +50,12 @@ export interface AppState {
 }
 
 export function weatherReducer(state: WeatherDataState = initialWeatherState, action: fromActions.WeatherActions): WeatherDataState {
-  console.log(action.type);
   switch (action.type) {
     case fromActions.WeatherActionTypes.LoadWeatherMainSuccess:
-      console.log(action.payload)
       return {
         ...state,
         weatherData: action.payload.weatherData
       };
-
-      // case fromActions.WeatherActionTypes.LoadWeatherMain:
-      //   return {
-      //     ...state,
-          
-      //   };
 
     default:
       return state;
@@ -75,7 +67,6 @@ export const weathersReducers: ActionReducerMap<AppState> = {
 };
 
 export const selectWeather = (state: AppState) => {
-  console.log(state.weather)
   return state.weather.weatherData
 
 }

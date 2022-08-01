@@ -19,6 +19,7 @@ import { ButtonModule } from "primeng/button";
 import { TabViewModule } from "primeng/tabview";
 import { CardModule } from 'primeng/card';
 import { DividerModule } from "primeng/divider";
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { DividerModule } from "primeng/divider";
     DividerModule
     
   ],
-  providers: [Store, HeaderComponent, ComponentStore],
+  providers: [Store, HeaderComponent, ComponentStore, DatePipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

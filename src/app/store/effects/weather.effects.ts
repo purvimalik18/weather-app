@@ -21,10 +21,8 @@ export class WeatherEffects{
       return this.actions$.pipe(
         ofType<fromActions.LoadWeatherMain>(fromActions.WeatherActionTypes.LoadWeatherMain),
           mergeMap((action) => {
-            console.log(action)
           return this.api.getWeatherForCity(action.payload.toString()).pipe(
             map(weather => {
-              console.log(weather)
               return (new fromActions.LoadWeatherMainSuccess({weatherData: weather}))
             })
           )}

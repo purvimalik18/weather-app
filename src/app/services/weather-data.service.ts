@@ -24,9 +24,9 @@ export class WeatherDataService {
     
   }
 
-  getForecast(city: string) {
-    const path = `api.openweathermap.org/data/2.5/forecast?q=${city},us&APPID=dabc2b57d81c4493c08ab63bb4d9e326&units=metric`;
-    //return this.http.post<Forecast>(path,city);
+  getForecast(lat: number, lon: number): Observable<any> {
+    const path = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&appid=508aa780a9e51edc6a0e4f3e55d85ab9`;
+   
     return this.http.get(path);
   }
 
