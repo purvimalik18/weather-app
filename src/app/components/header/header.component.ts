@@ -9,6 +9,7 @@ import { MainPageComponent } from '../main-page/main-page.component';
 import { Forecast } from 'src/app/models/forecast.interface';
 import { DatePipe } from '@angular/common';
 
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -22,7 +23,10 @@ export class HeaderComponent implements OnInit {
   timeDisplay!: any;
   index = 0;
   forecastData!: Forecast;
-  dayName!: any
+  day: any;
+  dd: any;
+  mm: any;
+  drop!: string;
 
   constructor(private api: WeatherDataService,
     public datepipe: DatePipe
@@ -31,16 +35,21 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void { 
     this.weather = this.api.getWeather();
     this.icon = "http://openweathermap.org/img/w/" + this.weather.weather[0].icon + ".png";
-    this.timeDisplay = this.time.toLocaleString('en-US', { hour: 'numeric', hour12: false, minute: 'numeric', timeZoneName: 'short' });
+    this.timeDisplay = this.time.toLocaleString('en-US', { hour: 'numeric', hour12: false, minute: 'numeric' });
     this.api.getForecast(this.weather.coord.lat, this.weather.coord.lon).subscribe(data => this.forecastData = data);
+
   }
 
   handleChange(e: any){
     this.index = e.index;
-    let latest_date =this.datepipe.transform(this.forecastData.list[0].dt, 'yyyy-MM-dd');
-    console.log(latest_date)
-    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    var d = new Date(this.forecastData.list[0].dt * 1000);
-    this.dayName = days[d.getDay()];
+}
+
+  getData(data: any){
+    var days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
+    var d = new Date(data.dt * 1000);
+    this.day = days[d.getDay()];
+    this.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
+    this.dd = new Date(data.dt*1000).getDate();
+    this.mm = new Date(data.dt*1000).getMonth();
   }
 }

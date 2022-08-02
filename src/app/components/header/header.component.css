@@ -70,3 +70,52 @@ div.for-tabs {
     font-size: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+.drop-icon{
+    width: 25px;
+    padding-top: 15px !important;
+    height: 40px;
+}
+
+.for-icon-forecast{
+    height: 70px;
+    width: 70px;
+}
+
+.day{
+    text-transform: uppercase;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+
+.date{
+    font-size: 20px;
+}
+
+.move-left{
+    padding-left: 30px
+}
+
+.move-down{
+    padding-top: 15px;
+}
+
+.temp-max{
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.temp-min{
+    padding-top: 38px;
+}
+
+.description{
+    font-family: "Helvetica Narrow","Arial Narrow",Tahoma,Arial,Helvetica,sans-serif;
+    text-transform: uppercase;
+    padding-top: 35px;
+    
+}
+
+.hyperlink{
+    padding-left: 11rem;
+    padding-top: 4rem;
+}

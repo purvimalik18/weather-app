@@ -5,42 +5,38 @@ export interface Forecast {
     list:[
         {
             dt:number,
-            main:{
-                temp:number,
-                feels_like:number,
-                temp_min:number,
-                temp_max:number,
-                pressure:1002,
-                sea_level:1002,
-                grnd_level:975,
-                humidity:66,
-                temp_kf:-2.49
+            sunrise:number,
+            sunset:number,
+            temp:{
+                day:number,
+                min:number,
+                max:number,
+                night:number,
+                eve:number,
+                morn:number
             },
+            feels_like:{
+                day:number,
+                night:number,
+                eve:number,
+                morn:number
+            },
+            pressure:number,
+            humidity:number,
             weather:[
                 {
-                    id:500,
-                    main:"Rain",
-                    description:"light rain",
+                    id:number,
+                    main:string,
+                    description:string,
                     icon:string
                 }
             ],
-            clouds:{
-                all:57
-            },
-            wind:{
-                speed:3.88,
-                deg:314,
-                gust:5.09
-            },
-            visibility:10000,
-            pop:0.79,
-            rain:{
-                "3h":1.48
-            },
-            sys:{
-                pod:"d"
-            },
-            dt_txt:"2022-07-31 09:00:00"
+            speed:number,
+            deg:number,
+            gust:number,
+            clouds:number,
+            pop:number,
+            rain:number
         }
       ],
       city:{

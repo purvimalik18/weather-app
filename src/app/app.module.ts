@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { TodayTabPageComponent } from './components/today-tab-page/today-tab-page.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ComponentStore } from '@ngrx/component-store';
 import { weathersReducers } from './store/reducers/weather.reducers';
@@ -20,14 +19,15 @@ import { TabViewModule } from "primeng/tabview";
 import { CardModule } from 'primeng/card';
 import { DividerModule } from "primeng/divider";
 import { DatePipe } from '@angular/common';
+import { WeatherMainComponent } from './components/weather-main/weather-main.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
-    TodayTabPageComponent,
-    HeaderComponent
+    HeaderComponent,
+    WeatherMainComponent
   ],
   imports: [
     BrowserModule,

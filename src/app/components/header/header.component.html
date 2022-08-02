@@ -24,12 +24,12 @@
 </div>
 
 <div *ngIf="index == 0">
-    <p-card [style]="{'width': '45rem', 'margin-bottom': '2em', 'height': '20rem', 'margin-left':'17rem',
+    <p-card [style]="{'width': '45rem', 'margin-bottom': '2em', 'height': '22rem', 'margin-left':'17rem',
     'margin-top':'3rem'}">
     <div class="same">
         <div>
             <h3>CURRENT WEATHER</h3>
-            <p>{{timeDisplay}}</p>
+            <p>Current Time: {{timeDisplay}} (IST)</p>
             <div class="same">
                 <img [src]="icon" class="for-icon"/>
                 <div >
@@ -37,7 +37,7 @@
                     <div>Feels Like : {{weather.main.feels_like}}°C</div>
                 </div>
             </div>
-            <h3>{{weather.weather[0].description}}</h3>
+            <h3 class="description">{{weather.weather[0].description}}</h3>
         </div>
         <div class="more-info">
             <p class="format">
@@ -55,17 +55,36 @@
             <p class="format">
                 Wind : {{weather.wind.speed}} km/hr
             </p>
+            <a routerLink="/weatherMain" class="hyperlink">More Details →</a>
         </div>
     </div>
 </p-card>
 </div>
 
-<div *ngIf="index == 1" class="same">
-    <div *ngFor="let data of forecastData.list">
-            <p-card>
-                {{dayName }}
-                {{data.dt | date: 'dd-MM-yyyy' }}
+<div *ngIf="index == 1">
+    <div *ngFor="let data of forecastData.list" class="same">
+        <div *ngIf="getData(data)" > </div>
+            <p-card [style]="{ 'width': '50rem','margin-left':'15rem',' margin-bottom': '3rem'}">
+                <div class="same">
+                    <div> 
+                        <p class="day">{{day}}</p>
+                        <p>{{dd}}/{{mm}}</p>
+                    </div>
+                    <div class="move-left move-down">
+                        <img [src]="icon" class="for-icon-forecast"/>
+                    </div>
+                    <div class="temp-max move-down">{{data.temp.min}}°C</div>
+                    <div class="temp-min move-down">/{{data.temp.max}}°C</div>
+                    <div class="move-left description ">
+                        {{data.weather[0].description}}
+                    </div>
+                    <div class="move-left move-down same">
+                        <img src="../../../assets/photos/dropicon.png" class="drop-icon"/>
+                        <p>Humidity : {{data.humidity}}%</p>
+                    </div>
+                </div>
             </p-card>
+       
         
     </div>
 </div>

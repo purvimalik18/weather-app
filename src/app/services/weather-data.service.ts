@@ -25,8 +25,13 @@ export class WeatherDataService {
   }
 
   getForecast(lat: number, lon: number): Observable<any> {
-    const path = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&appid=508aa780a9e51edc6a0e4f3e55d85ab9`;
+    const path = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=10&units=metric&appid=410463b3935acea56c8171825dbb4440`;
    
+    return this.http.get(path);
+  }
+
+  getDefaultData(): any{
+    const path = `https://api.openweathermap.org/data/2.5/weather?q=delhi&units=metric&APPID=695ed9f29c4599b7544d0db5c211d499`;
     return this.http.get(path);
   }
 
@@ -38,7 +43,7 @@ export class WeatherDataService {
 
   
 
-    setWeather(data: Weather) {
+setWeather(data: Weather) {
         this.updateWeather = data; 
 }
 
