@@ -3,9 +3,9 @@
     <h2>Know the Weather</h2>
 </div>
 
-<p-dropdown [options]="city" [(ngModel)]="selectedCity" [editable]="true"
-    placeholder="Choose/Type a Location" [filter]=true 
-    (keyup.enter)="addWeatherData(selectedCity)"
+<p-dropdown [options]="cityName" [(ngModel)]="selectedCity" 
+    placeholder="Choose a Location" [filter]=true optionLabel="name" filterBy="name, state"
+    (onChange)="addWeatherData($event)"
     [style]="{'min-width': '80%','height': '50%','padding': '10px',
     'box-shadow': '0px 0px 8px rgba(0,0,0,0.25)',
     'background-color':' rgba(255, 255,255, 0.5)',
