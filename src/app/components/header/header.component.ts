@@ -3,11 +3,10 @@ import { select, Store } from '@ngrx/store';
 import { Weather } from 'src/app/models/weather.interface';
 import { __asyncValues } from 'tslib';
 import { WeatherDataService } from 'src/app/services/weather-data.service';
-import * as fromStore from "../../store/selectors/weather.selectors";
-import { WeatherDataState } from 'src/app/store/reducers/weather.reducers';
-import { MainPageComponent } from '../main-page/main-page.component';
+import * as fromStore from "../../store";
 import { Forecast } from 'src/app/models/forecast.interface';
 import { DatePipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -22,22 +21,31 @@ export class HeaderComponent implements OnInit {
   time = new Date();
   timeDisplay!: any;
   index = 0;
-  forecastData!: Forecast;
+  forecastData$!: Observable<Forecast>;
+  weatherData$!: Observable<Weather>;
+  forecast!: Forecast;
   day: any;
   dd: any;
   mm: any;
-  drop!: string;
 
   constructor(private api: WeatherDataService,
-    public datepipe: DatePipe
+    public datepipe: DatePipe, private store: Store
      ) { }
 
   ngOnInit(): void { 
-    this.weather = this.api.getWeather();
-    this.icon = "http://openweathermap.org/img/w/" + this.weather.weather[0].icon + ".png";
+    this.weatherData$ = this.store.select(fromStore.selectWeather);
+    this.weatherData$.subscribe((weather: Weather) =>{
+      this.weather = weather;
+      this.icon = "http://openweathermap.org/img/w/" + this.weather.weather[0].icon + ".png";
+    } ); 
+    
     this.timeDisplay = this.time.toLocaleString('en-US', { hour: 'numeric', hour12: false, minute: 'numeric' });
-    this.api.getForecast(this.weather.coord.lat, this.weather.coord.lon).subscribe(data => this.forecastData = data);
 
+    this.store.dispatch(new fromStore.LoadForecastMain({lat: this.weather.coord.lat, lon: this.weather.coord.lon}));
+    this.forecastData$ = this.store.select(fromStore.selectForecast);
+    this.forecastData$.subscribe((forecast: Forecast) =>{
+      this.forecast = forecast
+    } ); 
   }
 
   handleChange(e: any){

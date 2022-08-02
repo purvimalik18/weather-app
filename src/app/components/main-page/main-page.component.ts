@@ -36,7 +36,6 @@ export class MainPageComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadWeatherMain(event.value.name));
     this.weatherInfo$ = this.store.select(fromStore.selectWeather);
     this.weatherInfo$.subscribe(weather =>{
-      this.api.setWeather(weather);
       this.weather = weather
       this.iconPath = "http://openweathermap.org/img/w/" + this.weather.weather[0].icon + ".png";
     } ); 

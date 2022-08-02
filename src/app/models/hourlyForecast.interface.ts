@@ -1,0 +1,56 @@
+export interface HourlyForecast {
+    cod: string,
+    message:number,
+    cnt:number,
+    list:[
+        {
+            dt:number,
+            main:{
+                temp:25.23,
+                feels_like:26.26,
+                temp_min:25.23,
+                temp_max:25.34,
+                pressure:1009,
+                sea_level:1009,
+                grnd_level:984,
+                humidity:94,
+                temp_kf:-0.11
+            },
+            weather:[
+                {
+                    id:804,
+                    main:"Clouds",
+                    description:"overcast clouds",
+                    icon:"04d"
+                }
+            ],
+            clouds:{
+                all:98
+            },
+            wind:{
+                speed:2.15,
+                deg:276,
+                gust:2.81
+            },
+            visibility:10000,
+            pop:0,
+            sys:{
+                pod:"d"
+            },
+            dt_txt:"2022-08-02 21:00:00"
+        },
+    ],
+    city:{
+        id:1851632,
+        name:"Shuzenji",
+        coord:{
+            lat:35,
+            lon:139
+        },
+        country:"JP",
+        population:0,
+        timezone:32400,
+        sunrise:1659470065,
+        sunset:1659519956
+    }
+}

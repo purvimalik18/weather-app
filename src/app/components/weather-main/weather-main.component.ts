@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { HourlyForecast } from 'src/app/models/hourlyForecast.interface';
 import { Weather } from 'src/app/models/weather.interface';
 import { WeatherDataService } from 'src/app/services/weather-data.service';
+import * as fromStore from "../../store";
 
 @Component({
   selector: 'app-weather-main',
@@ -13,17 +17,25 @@ export class WeatherMainComponent implements OnInit {
   day!: string
   dd!: number;
   mm!: number;
-  forecastData: any;
+  forecast$!: Observable<HourlyForecast>
+  forecastData!: HourlyForecast;
   hh!: number;
   min!: number;
+  weatherData$!: Observable<Weather>;
 
-  constructor(private api: WeatherDataService) { }
+  constructor(private api: WeatherDataService, private store: Store) { }
 
   ngOnInit(): void {
-    this.weather = this.api.getWeather();
-    this.api.getHourlyForecast(this.weather.coord.lat, this.weather.coord.lon).subscribe(data => 
-      this.forecastData = data
-  );
+    this.weatherData$ = this.store.select(fromStore.selectWeather);
+    this.weatherData$.subscribe((weather: Weather) =>{
+      this.weather = weather;
+    } ); 
+    this.store.dispatch(new fromStore.LoadHourlyForecastMain({lat: this.weather.coord.lat, lon: this.weather.coord.lon}));
+    this.forecast$ = this.store.select(fromStore.selectHourlyForecast);
+    this.forecast$.subscribe((forecast: HourlyForecast) =>{
+      this.forecastData = forecast
+    } ); 
+  ;
     
   }
 

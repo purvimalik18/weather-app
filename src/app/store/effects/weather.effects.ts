@@ -1,18 +1,14 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, Effect, ofType } from "@ngrx/effects";
-import { Action, Store } from "@ngrx/store";
-import { catchError, map, mergeMap, Observable, of } from "rxjs";
-import { Weather } from "src/app/models/weather.interface";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
+import { map, mergeMap } from "rxjs";
 import { WeatherDataService } from "../../services/weather-data.service";
 import * as fromActions from "../actions/weather.actions";
-import { AppState } from "../reducers/weather.reducers";
 
 @Injectable()
 export class WeatherEffects{
 
     constructor(private actions$: Actions, 
-      private api: WeatherDataService,
-      private store: Store<AppState>){
+      private api: WeatherDataService){
     }
     
 
@@ -31,5 +27,33 @@ export class WeatherEffects{
       }
     )
 
-   
+    getForecast$ = createEffect(() => {
+      
+      return this.actions$.pipe(
+        ofType<fromActions.LoadForecastMain>(fromActions.WeatherActionTypes.LoadForecastMain),
+          mergeMap((action) => {
+          return this.api.getForecast(action.payload.lat, action.payload.lon).pipe(
+            map(forecast => {
+              return (new fromActions.LoadForecastMainSuccess({forecastData: forecast}))
+            })
+          )}
+        )
+      )
+      }
+    )
+
+    getHourlyForecast$ = createEffect(() => {
+      
+      return this.actions$.pipe(
+        ofType<fromActions.LoadHourlyForecastMain>(fromActions.WeatherActionTypes.LoadHourlyForecastMain),
+          mergeMap((action) => {
+          return this.api.getHourlyForecast(action.payload.lat, action.payload.lon).pipe(
+            map(forecast => {
+              return (new fromActions.LoadHourlyForecastMainSuccess({hourlyForecastData: forecast}))
+            })
+          )}
+        )
+      )
+      }
+    )
 }
