@@ -1,1 +1,33 @@
-<p>weather-main works!</p>
+<div class="background">
+    <div class="same ">
+        <i class="pi pi-sun"></i>
+        <h2>Know the Weather</h2>
+    
+        <div *ngIf ="weather!= null" class="weather-data">
+            <div class="location-data">{{weather.name}}, {{ weather.sys.country }}</div>
+        </div>
+    </div>
+</div>
+
+<div *ngFor="let data of forecastData.list; let i = index" class="same" >
+    <div *ngIf="getData(data)" > </div>
+        <p-card [style]="{ 'width': '45rem','margin-left':'15rem',' margin-bottom': '3rem'}">
+            <div class="same">
+                <div class="date-time">
+                    <div>{{dd}}/{{mm}}</div>
+                    <div>{{hh}}:{{min}}</div>
+                </div>
+                <div class="move-left"><img [src]="icon" class="for-icon"/></div>
+                <div class="temperature">{{data.main.temp}}°C</div>
+                <div class="reel-feel">Feels Like : {{data.main.feels_like}}°C
+                    <div>{{weather.weather[0].description}}</div>
+                </div>
+                <div class="move-left same">
+                    <img src="../../../assets/photos/dropicon.png" class="drop-icon"/>
+                    <div class="humidity">{{data.main.humidity}}%</div>
+                </div>
+            </div>
+        </p-card>
+   
+    
+</div>

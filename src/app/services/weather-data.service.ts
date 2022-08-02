@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Observable, Subject } from 'rxjs';
-import { Forecast } from '../models/forecast.interface';
+import { Observable } from 'rxjs';
 import { Weather } from '../models/weather.interface';
-import {WeatherActions} from '../store'
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +24,11 @@ export class WeatherDataService {
 
   getForecast(lat: number, lon: number): Observable<any> {
     const path = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=10&units=metric&appid=410463b3935acea56c8171825dbb4440`;
-   
+    return this.http.get(path);
+  }
+
+  getHourlyForecast(lat: number, lon: number): Observable<any>{
+    const path = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=12&units=metric&appid=508aa780a9e51edc6a0e4f3e55d85ab9`;
     return this.http.get(path);
   }
 

@@ -26,7 +26,8 @@ const initialWeatherState: WeatherDataState = {
   visibility: 5000,
   wind: {
     speed: 5.14,
-    deg: 110
+    deg: 110,
+    gust:5.14
   },
   clouds: {
     all: 75

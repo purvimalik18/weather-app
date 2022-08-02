@@ -23,7 +23,8 @@ export interface Weather {
     visibility:number;
     wind:{
       speed:number;
-      deg:number
+      deg:number;
+      gust:number;
     },
     clouds:{
       all:number
