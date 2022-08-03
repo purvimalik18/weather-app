@@ -13,7 +13,7 @@
     'transition':' 0.4s', 'left': '100px'}" >
 </p-dropdown>
 
-<button class="weather-wrap" *ngIf ="weather != null " (click)="onSubmit()" >
+<button class="weather-wrap" *ngIf ="weather" (click)="onSubmit()" >
     <div class="location-box">
     <div class="location">{{weather.name}},{{ weather.sys.country }}</div>
     </div>

@@ -16,7 +16,7 @@ export class MainPageComponent implements OnInit {
 
   weatherInfo$!: Observable<Weather>;
   cityName = city;
-  selectedCity ="Delhi";
+  selectedCity ="";
   weather!: Weather ;
   iconPath!: string;
   
