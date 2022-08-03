@@ -45,7 +45,7 @@ export class HourlyForecastComponent implements OnInit {
     this.day = days[d.getDay()];
     this.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
     this.dd = new Date(data.dt*1000).getDate();
-    this.mm = new Date(data.dt*1000).getMonth();
+    this.mm = new Date(data.dt*1000).getMonth() +1;
     this.hh = new Date(data.dt*1000).getHours();
     this.min = new Date(data.dt*1000).getMinutes();
   }

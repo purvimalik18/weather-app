@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { EffectsModule } from '@ngrx/effects';
-import { HeaderComponent } from './components/header/header.component';
+import { WeatherInfoComponent } from './components/weather-info/weather-info.component';
 import { ComponentStore } from '@ngrx/component-store';
 import { weathersReducers } from './store/reducers/weather.reducers';
 import { WeatherEffects } from './store';
@@ -26,7 +26,7 @@ import { HourlyForecastComponent } from './components/hourly-forecast/hourly-for
   declarations: [
     AppComponent,
     MainPageComponent,
-    HeaderComponent,
+    WeatherInfoComponent,
     HourlyForecastComponent
   ],
   imports: [
@@ -44,7 +44,7 @@ import { HourlyForecastComponent } from './components/hourly-forecast/hourly-for
     DividerModule
     
   ],
-  providers: [Store, HeaderComponent, ComponentStore, DatePipe],
+  providers: [Store, ComponentStore, DatePipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

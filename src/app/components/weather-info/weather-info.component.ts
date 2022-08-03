@@ -10,11 +10,11 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  selector: 'app-weather-info',
+  templateUrl: './weather-info.component.html',
+  styleUrls: ['./weather-info.component.css'],
 })
-export class HeaderComponent implements OnInit {
+export class WeatherInfoComponent implements OnInit {
 
   weather!: Weather;
   icon!: string;
@@ -58,6 +58,6 @@ export class HeaderComponent implements OnInit {
     this.day = days[d.getDay()];
     this.icon = "http://openweathermap.org/img/w/" + data.weather[0].icon + ".png";
     this.dd = new Date(data.dt*1000).getDate();
-    this.mm = new Date(data.dt*1000).getMonth();
+    this.mm = new Date(data.dt*1000).getMonth()+1;
   }
 }

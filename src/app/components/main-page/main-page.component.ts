@@ -44,7 +44,7 @@ export class MainPageComponent implements OnInit {
   onSubmit() {
     const val = this.weatherInfo$;
     if (val) {
-      this.router.navigate(['/header']); 
+      this.router.navigate(['/weatherInfo']); 
     }
   }
 
