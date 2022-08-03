@@ -7,11 +7,11 @@ import { WeatherDataService } from 'src/app/services/weather-data.service';
 import * as fromStore from "../../store";
 
 @Component({
-  selector: 'app-weather-main',
-  templateUrl: './weather-main.component.html',
-  styleUrls: ['./weather-main.component.css']
+  selector: 'app-hourly-forecast',
+  templateUrl: './hourly-forecast.component.html',
+  styleUrls: ['./hourly-forecast.component.css']
 })
-export class WeatherMainComponent implements OnInit {
+export class HourlyForecastComponent implements OnInit {
   weather!: Weather;
   icon!: string;
   day!: string

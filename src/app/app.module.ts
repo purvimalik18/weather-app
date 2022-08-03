@@ -19,7 +19,7 @@ import { TabViewModule } from "primeng/tabview";
 import { CardModule } from 'primeng/card';
 import { DividerModule } from "primeng/divider";
 import { DatePipe } from '@angular/common';
-import { WeatherMainComponent } from './components/weather-main/weather-main.component';
+import { HourlyForecastComponent } from './components/hourly-forecast/hourly-forecast.component';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { WeatherMainComponent } from './components/weather-main/weather-main.com
     AppComponent,
     MainPageComponent,
     HeaderComponent,
-    WeatherMainComponent
+    HourlyForecastComponent
   ],
   imports: [
     BrowserModule,

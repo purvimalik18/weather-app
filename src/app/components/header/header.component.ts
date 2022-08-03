@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Weather } from 'src/app/models/weather.interface';
 import { __asyncValues } from 'tslib';
 import { WeatherDataService } from 'src/app/services/weather-data.service';
